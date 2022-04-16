@@ -19,7 +19,7 @@ LITERAL_TEXTO: '"' [a-zA-Z0-9]+ '"';
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //um literal numérico corresponde a um literal composto somente por números e sem aspas, também pode ter ponto caso senha decimal
-LITERAL_NUMERICO: [0-9]+ (. [0-9]+)?;
+LITERAL_NUMERICO: [0-9]+ | [0-9]? . [0-9]+;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -44,8 +44,14 @@ operador_logico: '&&' | '||' | '!';
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//Lexema . representa fim da linha de comando
+fim_linha: '.';
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //Identificador pode ser uma variável, método, array
-IDENTIFICADOR: [a-zA-Z]+ [a-zA-Z0-9]*;
+IDENTIFICADOR: [a-zA-Z][a-zA-Z0-9]*;
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -78,11 +84,15 @@ expressao_logica: '!'*(literal_booleano|IDENTIFICADOR) (operador_logico '!'*(lit
 instrucao_atribuicao: atribuicao_inteiros | atribuicao_decimal | atribuicao_texto | atribuicao_booleana | atribuicao_caractere;
 
 //Todos os tipos de atribuições abaixo
-atribuicao_inteiros: tipo_inteiro IDENTIFICADOR ':=' expressao_aritmetica;
-atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica;
-atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' expressao_logica | expressao_relacional;
-atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO;
-atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE;
+atribuicao_inteiros: tipo_inteiro IDENTIFICADOR ':=' expressao_aritmetica fim_linha {
+    if ($tipo_inteiro.text.equals("inteiro")) System.out.println("int " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
+    if ($tipo_inteiro.text.equals("longo")) System.out.println("long " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
+    if ($tipo_inteiro.text.equals("curto")) System.out.println("short " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
+    if ($tipo_inteiro.text.equals("byte")) System.out.println("byte " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");};
+atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica fim_linha;
+atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' expressao_logica | expressao_relacional fim_linha;
+atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO fim_linha;
+atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE fim_linha;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

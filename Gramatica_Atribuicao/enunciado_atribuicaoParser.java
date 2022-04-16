@@ -18,22 +18,23 @@ public class enunciado_atribuicaoParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, CARACTERE=24, 
-		LITERAL_TEXTO=25, LITERAL_NUMERICO=26, IDENTIFICADOR=27, Ws=28;
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
+		CARACTERE=25, LITERAL_TEXTO=26, LITERAL_NUMERICO=27, IDENTIFICADOR=28, 
+		Ws=29;
 	public static final int
 		RULE_init = 0, RULE_literal_booleano = 1, RULE_literal = 2, RULE_operador_aritmetico = 3, 
-		RULE_operador_relacional = 4, RULE_operador_logico = 5, RULE_tipo_inteiro = 6, 
-		RULE_tipo_decimal = 7, RULE_tipo_texto = 8, RULE_tipo_caractere = 9, RULE_expressao_aritmetica = 10, 
-		RULE_expressao_relacional = 11, RULE_expressao_logica = 12, RULE_instrucao_atribuicao = 13, 
-		RULE_atribuicao_inteiros = 14, RULE_atribuicao_decimal = 15, RULE_atribuicao_booleana = 16, 
-		RULE_atribuicao_texto = 17, RULE_atribuicao_caractere = 18;
+		RULE_operador_relacional = 4, RULE_operador_logico = 5, RULE_fim_linha = 6, 
+		RULE_tipo_inteiro = 7, RULE_tipo_decimal = 8, RULE_tipo_texto = 9, RULE_tipo_caractere = 10, 
+		RULE_expressao_aritmetica = 11, RULE_expressao_relacional = 12, RULE_expressao_logica = 13, 
+		RULE_instrucao_atribuicao = 14, RULE_atribuicao_inteiros = 15, RULE_atribuicao_decimal = 16, 
+		RULE_atribuicao_booleana = 17, RULE_atribuicao_texto = 18, RULE_atribuicao_caractere = 19;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"init", "literal_booleano", "literal", "operador_aritmetico", "operador_relacional", 
-			"operador_logico", "tipo_inteiro", "tipo_decimal", "tipo_texto", "tipo_caractere", 
-			"expressao_aritmetica", "expressao_relacional", "expressao_logica", "instrucao_atribuicao", 
-			"atribuicao_inteiros", "atribuicao_decimal", "atribuicao_booleana", "atribuicao_texto", 
-			"atribuicao_caractere"
+			"operador_logico", "fim_linha", "tipo_inteiro", "tipo_decimal", "tipo_texto", 
+			"tipo_caractere", "expressao_aritmetica", "expressao_relacional", "expressao_logica", 
+			"instrucao_atribuicao", "atribuicao_inteiros", "atribuicao_decimal", 
+			"atribuicao_booleana", "atribuicao_texto", "atribuicao_caractere"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -41,9 +42,9 @@ public class enunciado_atribuicaoParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'verdadeiro'", "'falso'", "'+'", "'-'", "'/'", "'*'", "'>'", "'<'", 
-			"'<='", "'>='", "'&&'", "'||'", "'!'", "'inteiro'", "'longo'", "'curto'", 
-			"'byte'", "'decimal'", "'flutuante'", "'texto'", "'caractere'", "':='", 
-			"'booleano'"
+			"'<='", "'>='", "'&&'", "'||'", "'!'", "'.'", "'inteiro'", "'longo'", 
+			"'curto'", "'byte'", "'decimal'", "'flutuante'", "'texto'", "'caractere'", 
+			"':='", "'booleano'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -51,7 +52,8 @@ public class enunciado_atribuicaoParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			"CARACTERE", "LITERAL_TEXTO", "LITERAL_NUMERICO", "IDENTIFICADOR", "Ws"
+			null, "CARACTERE", "LITERAL_TEXTO", "LITERAL_NUMERICO", "IDENTIFICADOR", 
+			"Ws"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -129,7 +131,7 @@ public class enunciado_atribuicaoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
+			setState(40);
 			instrucao_atribuicao();
 			}
 		}
@@ -166,7 +168,7 @@ public class enunciado_atribuicaoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(40);
+			setState(42);
 			_la = _input.LA(1);
 			if ( !(_la==T__0 || _la==T__1) ) {
 			_errHandler.recoverInline(this);
@@ -214,27 +216,27 @@ public class enunciado_atribuicaoParser extends Parser {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_literal);
 		try {
-			setState(46);
+			setState(48);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LITERAL_TEXTO:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(42);
+				setState(44);
 				match(LITERAL_TEXTO);
 				}
 				break;
 			case LITERAL_NUMERICO:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(43);
+				setState(45);
 				match(LITERAL_NUMERICO);
 				}
 				break;
 			case CARACTERE:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(44);
+				setState(46);
 				match(CARACTERE);
 				}
 				break;
@@ -242,7 +244,7 @@ public class enunciado_atribuicaoParser extends Parser {
 			case T__1:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(45);
+				setState(47);
 				literal_booleano();
 				}
 				break;
@@ -283,7 +285,7 @@ public class enunciado_atribuicaoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(50);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -328,7 +330,7 @@ public class enunciado_atribuicaoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50);
+			setState(52);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -373,7 +375,7 @@ public class enunciado_atribuicaoParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
+			setState(54);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -383,6 +385,42 @@ public class enunciado_atribuicaoParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Fim_linhaContext extends ParserRuleContext {
+		public Fim_linhaContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_fim_linha; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof enunciado_atribuicaoListener ) ((enunciado_atribuicaoListener)listener).enterFim_linha(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof enunciado_atribuicaoListener ) ((enunciado_atribuicaoListener)listener).exitFim_linha(this);
+		}
+	}
+
+	public final Fim_linhaContext fim_linha() throws RecognitionException {
+		Fim_linhaContext _localctx = new Fim_linhaContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_fim_linha);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(56);
+			match(T__13);
 			}
 		}
 		catch (RecognitionException re) {
@@ -413,14 +451,14 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Tipo_inteiroContext tipo_inteiro() throws RecognitionException {
 		Tipo_inteiroContext _localctx = new Tipo_inteiroContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_tipo_inteiro);
+		enterRule(_localctx, 14, RULE_tipo_inteiro);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
+			setState(58);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -458,14 +496,14 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Tipo_decimalContext tipo_decimal() throws RecognitionException {
 		Tipo_decimalContext _localctx = new Tipo_decimalContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_tipo_decimal);
+		enterRule(_localctx, 16, RULE_tipo_decimal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(60);
 			_la = _input.LA(1);
-			if ( !(_la==T__17 || _la==T__18) ) {
+			if ( !(_la==T__18 || _la==T__19) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -503,12 +541,12 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Tipo_textoContext tipo_texto() throws RecognitionException {
 		Tipo_textoContext _localctx = new Tipo_textoContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_tipo_texto);
+		enterRule(_localctx, 18, RULE_tipo_texto);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
-			match(T__19);
+			setState(62);
+			match(T__20);
 			}
 		}
 		catch (RecognitionException re) {
@@ -539,12 +577,12 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Tipo_caractereContext tipo_caractere() throws RecognitionException {
 		Tipo_caractereContext _localctx = new Tipo_caractereContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_tipo_caractere);
+		enterRule(_localctx, 20, RULE_tipo_caractere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
-			match(T__20);
+			setState(64);
+			match(T__21);
 			}
 		}
 		catch (RecognitionException re) {
@@ -589,12 +627,12 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Expressao_aritmeticaContext expressao_aritmetica() throws RecognitionException {
 		Expressao_aritmeticaContext _localctx = new Expressao_aritmeticaContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_expressao_aritmetica);
+		enterRule(_localctx, 22, RULE_expressao_aritmetica);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(62);
+			setState(66);
 			_la = _input.LA(1);
 			if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 			_errHandler.recoverInline(this);
@@ -604,15 +642,15 @@ public class enunciado_atribuicaoParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(68);
+			setState(72);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5))) != 0)) {
 				{
 				{
-				setState(63);
+				setState(67);
 				operador_aritmetico();
-				setState(64);
+				setState(68);
 				_la = _input.LA(1);
 				if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 				_errHandler.recoverInline(this);
@@ -624,7 +662,7 @@ public class enunciado_atribuicaoParser extends Parser {
 				}
 				}
 				}
-				setState(70);
+				setState(74);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -669,12 +707,12 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Expressao_relacionalContext expressao_relacional() throws RecognitionException {
 		Expressao_relacionalContext _localctx = new Expressao_relacionalContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_expressao_relacional);
+		enterRule(_localctx, 24, RULE_expressao_relacional);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
+			setState(75);
 			_la = _input.LA(1);
 			if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 			_errHandler.recoverInline(this);
@@ -684,9 +722,9 @@ public class enunciado_atribuicaoParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(72);
+			setState(76);
 			operador_relacional();
-			setState(73);
+			setState(77);
 			_la = _input.LA(1);
 			if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 			_errHandler.recoverInline(this);
@@ -742,79 +780,79 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Expressao_logicaContext expressao_logica() throws RecognitionException {
 		Expressao_logicaContext _localctx = new Expressao_logicaContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_expressao_logica);
+		enterRule(_localctx, 26, RULE_expressao_logica);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(78);
+			setState(82);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__12) {
 				{
 				{
-				setState(75);
+				setState(79);
 				match(T__12);
 				}
 				}
-				setState(80);
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(83);
+			setState(87);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
 			case T__1:
 				{
-				setState(81);
+				setState(85);
 				literal_booleano();
 				}
 				break;
 			case IDENTIFICADOR:
 				{
-				setState(82);
+				setState(86);
 				match(IDENTIFICADOR);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(98);
+			setState(102);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) {
 				{
 				{
-				setState(85);
-				operador_logico();
 				setState(89);
+				operador_logico();
+				setState(93);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__12) {
 					{
 					{
-					setState(86);
+					setState(90);
 					match(T__12);
 					}
 					}
-					setState(91);
+					setState(95);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(94);
+				setState(98);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case T__0:
 				case T__1:
 					{
-					setState(92);
+					setState(96);
 					literal_booleano();
 					}
 					break;
 				case IDENTIFICADOR:
 					{
-					setState(93);
+					setState(97);
 					match(IDENTIFICADOR);
 					}
 					break;
@@ -823,7 +861,7 @@ public class enunciado_atribuicaoParser extends Parser {
 				}
 				}
 				}
-				setState(100);
+				setState(104);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -872,49 +910,49 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Instrucao_atribuicaoContext instrucao_atribuicao() throws RecognitionException {
 		Instrucao_atribuicaoContext _localctx = new Instrucao_atribuicaoContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_instrucao_atribuicao);
+		enterRule(_localctx, 28, RULE_instrucao_atribuicao);
 		try {
-			setState(106);
+			setState(110);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__13:
 			case T__14:
 			case T__15:
 			case T__16:
+			case T__17:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(101);
+				setState(105);
 				atribuicao_inteiros();
 				}
 				break;
-			case T__17:
 			case T__18:
+			case T__19:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(102);
+				setState(106);
 				atribuicao_decimal();
 				}
 				break;
-			case T__19:
+			case T__20:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(103);
+				setState(107);
 				atribuicao_texto();
 				}
 				break;
-			case T__22:
+			case T__23:
 			case LITERAL_NUMERICO:
 			case IDENTIFICADOR:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(104);
+				setState(108);
 				atribuicao_booleana();
 				}
 				break;
-			case T__20:
+			case T__21:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(105);
+				setState(109);
 				atribuicao_caractere();
 				}
 				break;
@@ -934,12 +972,18 @@ public class enunciado_atribuicaoParser extends Parser {
 	}
 
 	public static class Atribuicao_inteirosContext extends ParserRuleContext {
+		public Tipo_inteiroContext tipo_inteiro;
+		public Token IDENTIFICADOR;
+		public Expressao_aritmeticaContext expressao_aritmetica;
 		public Tipo_inteiroContext tipo_inteiro() {
 			return getRuleContext(Tipo_inteiroContext.class,0);
 		}
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_atribuicaoParser.IDENTIFICADOR, 0); }
 		public Expressao_aritmeticaContext expressao_aritmetica() {
 			return getRuleContext(Expressao_aritmeticaContext.class,0);
+		}
+		public Fim_linhaContext fim_linha() {
+			return getRuleContext(Fim_linhaContext.class,0);
 		}
 		public Atribuicao_inteirosContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -957,18 +1001,25 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Atribuicao_inteirosContext atribuicao_inteiros() throws RecognitionException {
 		Atribuicao_inteirosContext _localctx = new Atribuicao_inteirosContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_atribuicao_inteiros);
+		enterRule(_localctx, 30, RULE_atribuicao_inteiros);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108);
-			tipo_inteiro();
-			setState(109);
-			match(IDENTIFICADOR);
-			setState(110);
-			match(T__21);
-			setState(111);
-			expressao_aritmetica();
+			setState(112);
+			((Atribuicao_inteirosContext)_localctx).tipo_inteiro = tipo_inteiro();
+			setState(113);
+			((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
+			setState(114);
+			match(T__22);
+			setState(115);
+			((Atribuicao_inteirosContext)_localctx).expressao_aritmetica = expressao_aritmetica();
+			setState(116);
+			fim_linha();
+
+			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("inteiro")) System.out.println("int" + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
+			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("longo")) System.out.println("long" + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
+			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("curto")) System.out.println("short" + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
+			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("byte")) System.out.println("byte" + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
 			}
 		}
 		catch (RecognitionException re) {
@@ -990,6 +1041,9 @@ public class enunciado_atribuicaoParser extends Parser {
 		public Expressao_aritmeticaContext expressao_aritmetica() {
 			return getRuleContext(Expressao_aritmeticaContext.class,0);
 		}
+		public Fim_linhaContext fim_linha() {
+			return getRuleContext(Fim_linhaContext.class,0);
+		}
 		public Atribuicao_decimalContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1006,18 +1060,20 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Atribuicao_decimalContext atribuicao_decimal() throws RecognitionException {
 		Atribuicao_decimalContext _localctx = new Atribuicao_decimalContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_atribuicao_decimal);
+		enterRule(_localctx, 32, RULE_atribuicao_decimal);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113);
+			setState(119);
 			tipo_decimal();
-			setState(114);
+			setState(120);
 			match(IDENTIFICADOR);
-			setState(115);
-			match(T__21);
-			setState(116);
+			setState(121);
+			match(T__22);
+			setState(122);
 			expressao_aritmetica();
+			setState(123);
+			fim_linha();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1039,6 +1095,9 @@ public class enunciado_atribuicaoParser extends Parser {
 		public Expressao_relacionalContext expressao_relacional() {
 			return getRuleContext(Expressao_relacionalContext.class,0);
 		}
+		public Fim_linhaContext fim_linha() {
+			return getRuleContext(Fim_linhaContext.class,0);
+		}
 		public Atribuicao_booleanaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1055,21 +1114,21 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Atribuicao_booleanaContext atribuicao_booleana() throws RecognitionException {
 		Atribuicao_booleanaContext _localctx = new Atribuicao_booleanaContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_atribuicao_booleana);
+		enterRule(_localctx, 34, RULE_atribuicao_booleana);
 		try {
-			setState(123);
+			setState(132);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__22:
+			case T__23:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(118);
-				match(T__22);
-				setState(119);
+				setState(125);
+				match(T__23);
+				setState(126);
 				match(IDENTIFICADOR);
-				setState(120);
-				match(T__21);
-				setState(121);
+				setState(127);
+				match(T__22);
+				setState(128);
 				expressao_logica();
 				}
 				break;
@@ -1077,8 +1136,10 @@ public class enunciado_atribuicaoParser extends Parser {
 			case IDENTIFICADOR:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(122);
+				setState(129);
 				expressao_relacional();
+				setState(130);
+				fim_linha();
 				}
 				break;
 			default:
@@ -1102,6 +1163,9 @@ public class enunciado_atribuicaoParser extends Parser {
 		}
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_atribuicaoParser.IDENTIFICADOR, 0); }
 		public TerminalNode LITERAL_TEXTO() { return getToken(enunciado_atribuicaoParser.LITERAL_TEXTO, 0); }
+		public Fim_linhaContext fim_linha() {
+			return getRuleContext(Fim_linhaContext.class,0);
+		}
 		public Atribuicao_textoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1118,18 +1182,20 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Atribuicao_textoContext atribuicao_texto() throws RecognitionException {
 		Atribuicao_textoContext _localctx = new Atribuicao_textoContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_atribuicao_texto);
+		enterRule(_localctx, 36, RULE_atribuicao_texto);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
+			setState(134);
 			tipo_texto();
-			setState(126);
+			setState(135);
 			match(IDENTIFICADOR);
-			setState(127);
-			match(T__21);
-			setState(128);
+			setState(136);
+			match(T__22);
+			setState(137);
 			match(LITERAL_TEXTO);
+			setState(138);
+			fim_linha();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1149,6 +1215,9 @@ public class enunciado_atribuicaoParser extends Parser {
 		}
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_atribuicaoParser.IDENTIFICADOR, 0); }
 		public TerminalNode CARACTERE() { return getToken(enunciado_atribuicaoParser.CARACTERE, 0); }
+		public Fim_linhaContext fim_linha() {
+			return getRuleContext(Fim_linhaContext.class,0);
+		}
 		public Atribuicao_caractereContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1165,18 +1234,20 @@ public class enunciado_atribuicaoParser extends Parser {
 
 	public final Atribuicao_caractereContext atribuicao_caractere() throws RecognitionException {
 		Atribuicao_caractereContext _localctx = new Atribuicao_caractereContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_atribuicao_caractere);
+		enterRule(_localctx, 38, RULE_atribuicao_caractere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130);
+			setState(140);
 			tipo_caractere();
-			setState(131);
+			setState(141);
 			match(IDENTIFICADOR);
-			setState(132);
-			match(T__21);
-			setState(133);
+			setState(142);
+			match(T__22);
+			setState(143);
 			match(CARACTERE);
+			setState(144);
+			fim_linha();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1191,41 +1262,45 @@ public class enunciado_atribuicaoParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36\u008a\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37\u0095\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\3\2\3\2\3\3\3\3\3\4\3\4\3\4\3\4\5\4\61\n\4\3\5\3"+
-		"\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\f\3\f\7"+
-		"\fE\n\f\f\f\16\fH\13\f\3\r\3\r\3\r\3\r\3\16\7\16O\n\16\f\16\16\16R\13"+
-		"\16\3\16\3\16\5\16V\n\16\3\16\3\16\7\16Z\n\16\f\16\16\16]\13\16\3\16\3"+
-		"\16\5\16a\n\16\7\16c\n\16\f\16\16\16f\13\16\3\17\3\17\3\17\3\17\3\17\5"+
-		"\17m\n\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\22\3\22"+
-		"\3\22\3\22\3\22\5\22~\n\22\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24"+
-		"\3\24\3\24\2\2\25\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\t\3\2"+
-		"\3\4\3\2\5\b\3\2\t\f\3\2\r\17\3\2\20\23\3\2\24\25\3\2\34\35\2\u0084\2"+
-		"(\3\2\2\2\4*\3\2\2\2\6\60\3\2\2\2\b\62\3\2\2\2\n\64\3\2\2\2\f\66\3\2\2"+
-		"\2\168\3\2\2\2\20:\3\2\2\2\22<\3\2\2\2\24>\3\2\2\2\26@\3\2\2\2\30I\3\2"+
-		"\2\2\32P\3\2\2\2\34l\3\2\2\2\36n\3\2\2\2 s\3\2\2\2\"}\3\2\2\2$\177\3\2"+
-		"\2\2&\u0084\3\2\2\2()\5\34\17\2)\3\3\2\2\2*+\t\2\2\2+\5\3\2\2\2,\61\7"+
-		"\33\2\2-\61\7\34\2\2.\61\7\32\2\2/\61\5\4\3\2\60,\3\2\2\2\60-\3\2\2\2"+
-		"\60.\3\2\2\2\60/\3\2\2\2\61\7\3\2\2\2\62\63\t\3\2\2\63\t\3\2\2\2\64\65"+
-		"\t\4\2\2\65\13\3\2\2\2\66\67\t\5\2\2\67\r\3\2\2\289\t\6\2\29\17\3\2\2"+
-		"\2:;\t\7\2\2;\21\3\2\2\2<=\7\26\2\2=\23\3\2\2\2>?\7\27\2\2?\25\3\2\2\2"+
-		"@F\t\b\2\2AB\5\b\5\2BC\t\b\2\2CE\3\2\2\2DA\3\2\2\2EH\3\2\2\2FD\3\2\2\2"+
-		"FG\3\2\2\2G\27\3\2\2\2HF\3\2\2\2IJ\t\b\2\2JK\5\n\6\2KL\t\b\2\2L\31\3\2"+
-		"\2\2MO\7\17\2\2NM\3\2\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QU\3\2\2\2RP\3"+
-		"\2\2\2SV\5\4\3\2TV\7\35\2\2US\3\2\2\2UT\3\2\2\2Vd\3\2\2\2W[\5\f\7\2XZ"+
-		"\7\17\2\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\`\3\2\2\2][\3\2\2"+
-		"\2^a\5\4\3\2_a\7\35\2\2`^\3\2\2\2`_\3\2\2\2ac\3\2\2\2bW\3\2\2\2cf\3\2"+
-		"\2\2db\3\2\2\2de\3\2\2\2e\33\3\2\2\2fd\3\2\2\2gm\5\36\20\2hm\5 \21\2i"+
-		"m\5$\23\2jm\5\"\22\2km\5&\24\2lg\3\2\2\2lh\3\2\2\2li\3\2\2\2lj\3\2\2\2"+
-		"lk\3\2\2\2m\35\3\2\2\2no\5\16\b\2op\7\35\2\2pq\7\30\2\2qr\5\26\f\2r\37"+
-		"\3\2\2\2st\5\20\t\2tu\7\35\2\2uv\7\30\2\2vw\5\26\f\2w!\3\2\2\2xy\7\31"+
-		"\2\2yz\7\35\2\2z{\7\30\2\2{~\5\32\16\2|~\5\30\r\2}x\3\2\2\2}|\3\2\2\2"+
-		"~#\3\2\2\2\177\u0080\5\22\n\2\u0080\u0081\7\35\2\2\u0081\u0082\7\30\2"+
-		"\2\u0082\u0083\7\33\2\2\u0083%\3\2\2\2\u0084\u0085\5\24\13\2\u0085\u0086"+
-		"\7\35\2\2\u0086\u0087\7\30\2\2\u0087\u0088\7\32\2\2\u0088\'\3\2\2\2\13"+
-		"\60FPU[`dl}";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\3\2\3\2\3\3\3\3\3\4\3\4\3\4\3\4\5\4\63"+
+		"\n\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f"+
+		"\3\r\3\r\3\r\3\r\7\rI\n\r\f\r\16\rL\13\r\3\16\3\16\3\16\3\16\3\17\7\17"+
+		"S\n\17\f\17\16\17V\13\17\3\17\3\17\5\17Z\n\17\3\17\3\17\7\17^\n\17\f\17"+
+		"\16\17a\13\17\3\17\3\17\5\17e\n\17\7\17g\n\17\f\17\16\17j\13\17\3\20\3"+
+		"\20\3\20\3\20\3\20\5\20q\n\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\22"+
+		"\3\22\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u0087"+
+		"\n\23\3\24\3\24\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
+		"\2\2\26\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(\2\t\3\2\3\4\3\2\5"+
+		"\b\3\2\t\f\3\2\r\17\3\2\21\24\3\2\25\26\3\2\35\36\2\u008e\2*\3\2\2\2\4"+
+		",\3\2\2\2\6\62\3\2\2\2\b\64\3\2\2\2\n\66\3\2\2\2\f8\3\2\2\2\16:\3\2\2"+
+		"\2\20<\3\2\2\2\22>\3\2\2\2\24@\3\2\2\2\26B\3\2\2\2\30D\3\2\2\2\32M\3\2"+
+		"\2\2\34T\3\2\2\2\36p\3\2\2\2 r\3\2\2\2\"y\3\2\2\2$\u0086\3\2\2\2&\u0088"+
+		"\3\2\2\2(\u008e\3\2\2\2*+\5\36\20\2+\3\3\2\2\2,-\t\2\2\2-\5\3\2\2\2.\63"+
+		"\7\34\2\2/\63\7\35\2\2\60\63\7\33\2\2\61\63\5\4\3\2\62.\3\2\2\2\62/\3"+
+		"\2\2\2\62\60\3\2\2\2\62\61\3\2\2\2\63\7\3\2\2\2\64\65\t\3\2\2\65\t\3\2"+
+		"\2\2\66\67\t\4\2\2\67\13\3\2\2\289\t\5\2\29\r\3\2\2\2:;\7\20\2\2;\17\3"+
+		"\2\2\2<=\t\6\2\2=\21\3\2\2\2>?\t\7\2\2?\23\3\2\2\2@A\7\27\2\2A\25\3\2"+
+		"\2\2BC\7\30\2\2C\27\3\2\2\2DJ\t\b\2\2EF\5\b\5\2FG\t\b\2\2GI\3\2\2\2HE"+
+		"\3\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\31\3\2\2\2LJ\3\2\2\2MN\t\b\2\2"+
+		"NO\5\n\6\2OP\t\b\2\2P\33\3\2\2\2QS\7\17\2\2RQ\3\2\2\2SV\3\2\2\2TR\3\2"+
+		"\2\2TU\3\2\2\2UY\3\2\2\2VT\3\2\2\2WZ\5\4\3\2XZ\7\36\2\2YW\3\2\2\2YX\3"+
+		"\2\2\2Zh\3\2\2\2[_\5\f\7\2\\^\7\17\2\2]\\\3\2\2\2^a\3\2\2\2_]\3\2\2\2"+
+		"_`\3\2\2\2`d\3\2\2\2a_\3\2\2\2be\5\4\3\2ce\7\36\2\2db\3\2\2\2dc\3\2\2"+
+		"\2eg\3\2\2\2f[\3\2\2\2gj\3\2\2\2hf\3\2\2\2hi\3\2\2\2i\35\3\2\2\2jh\3\2"+
+		"\2\2kq\5 \21\2lq\5\"\22\2mq\5&\24\2nq\5$\23\2oq\5(\25\2pk\3\2\2\2pl\3"+
+		"\2\2\2pm\3\2\2\2pn\3\2\2\2po\3\2\2\2q\37\3\2\2\2rs\5\20\t\2st\7\36\2\2"+
+		"tu\7\31\2\2uv\5\30\r\2vw\5\16\b\2wx\b\21\1\2x!\3\2\2\2yz\5\22\n\2z{\7"+
+		"\36\2\2{|\7\31\2\2|}\5\30\r\2}~\5\16\b\2~#\3\2\2\2\177\u0080\7\32\2\2"+
+		"\u0080\u0081\7\36\2\2\u0081\u0082\7\31\2\2\u0082\u0087\5\34\17\2\u0083"+
+		"\u0084\5\32\16\2\u0084\u0085\5\16\b\2\u0085\u0087\3\2\2\2\u0086\177\3"+
+		"\2\2\2\u0086\u0083\3\2\2\2\u0087%\3\2\2\2\u0088\u0089\5\24\13\2\u0089"+
+		"\u008a\7\36\2\2\u008a\u008b\7\31\2\2\u008b\u008c\7\34\2\2\u008c\u008d"+
+		"\5\16\b\2\u008d\'\3\2\2\2\u008e\u008f\5\26\f\2\u008f\u0090\7\36\2\2\u0090"+
+		"\u0091\7\31\2\2\u0091\u0092\7\33\2\2\u0092\u0093\5\16\b\2\u0093)\3\2\2"+
+		"\2\13\62JTY_dhp\u0086";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

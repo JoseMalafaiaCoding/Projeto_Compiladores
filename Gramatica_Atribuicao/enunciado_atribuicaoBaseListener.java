@@ -87,6 +87,18 @@ public class enunciado_atribuicaoBaseListener implements enunciado_atribuicaoLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFim_linha(enunciado_atribuicaoParser.Fim_linhaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFim_linha(enunciado_atribuicaoParser.Fim_linhaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTipo_inteiro(enunciado_atribuicaoParser.Tipo_inteiroContext ctx) { }
 	/**
 	 * {@inheritDoc}

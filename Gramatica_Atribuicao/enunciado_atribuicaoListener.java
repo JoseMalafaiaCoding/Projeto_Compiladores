@@ -67,6 +67,16 @@ public interface enunciado_atribuicaoListener extends ParseTreeListener {
 	 */
 	void exitOperador_logico(enunciado_atribuicaoParser.Operador_logicoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link enunciado_atribuicaoParser#fim_linha}.
+	 * @param ctx the parse tree
+	 */
+	void enterFim_linha(enunciado_atribuicaoParser.Fim_linhaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link enunciado_atribuicaoParser#fim_linha}.
+	 * @param ctx the parse tree
+	 */
+	void exitFim_linha(enunciado_atribuicaoParser.Fim_linhaContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link enunciado_atribuicaoParser#tipo_inteiro}.
 	 * @param ctx the parse tree
 	 */
