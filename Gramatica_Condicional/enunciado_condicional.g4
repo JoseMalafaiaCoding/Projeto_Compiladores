@@ -10,12 +10,12 @@ import enunciado_atribuicao;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Defino a regra raiz da gramática
-init: instrucao_condicional;
+init:{System.out.println("");} instrucao_condicional;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //condicao é a expressao que vai entre parenteses na instrução se-entao-senao
-condicao: literal_booleano | expressao_relacional | expressao_logica;
+condicao: literal_booleano | expressao_relacional {System.out.println($expressao_relacional.text);}| expressao_logica;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24,4 +24,4 @@ condicao: literal_booleano | expressao_relacional | expressao_logica;
 //em seguida, dentro do bloco da condicional pode ser inserida qualquer tipo de instrução ou expressão presentes em java, como outra instrução condcional ou uma instrução de atribuição
 //caso a condição seja falsa o bloco do entao é ignorado e o codigo do senao é executado e dentro deste podem ocorrer novas instruções e expressões
 //abre e fecha chaves estão ao inicio e final de cada bloco da instrução condicional para facilitar a leitura
-instrucao_condicional: 'se' '('condicao')' 'entao''{' (instrucao_atribuicao | instrucao_condicional)'}'('senao''{' instrucao_condicional'}')?;
+instrucao_condicional: 'se' '(' {System.out.print("if (");}condicao')' {System.out.println(") {");}'logo''{'(instrucao_atribuicao | instrucao_condicional)*'}' {System.out.println("} ");}( 'tirante' {System.out.println(" else { ");}'{' (instrucao_atribuicao | instrucao_condicional)* '}' {System.out.println("}");})?;

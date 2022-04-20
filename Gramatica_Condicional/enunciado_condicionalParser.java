@@ -43,7 +43,7 @@ public class enunciado_condicionalParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'se'", "'('", "')'", "'entao'", "'{'", "'}'", "'senao'", "'verdadeiro'", 
+			null, "'se'", "'('", "')'", "'logo'", "'{'", "'}'", "'tirante'", "'verdadeiro'", 
 			"'falso'", "'+'", "'-'", "'/'", "'*'", "'>'", "'<'", "'<='", "'>='", 
 			"'&&'", "'||'", "'!'", "'.'", "'inteiro'", "'longo'", "'curto'", "'byte'", 
 			"'decimal'", "'flutuante'", "'texto'", "'caractere'", "':='", "'booleano'"
@@ -133,7 +133,8 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			System.out.println("");
+			setState(45);
 			instrucao_condicional();
 			}
 		}
@@ -149,6 +150,7 @@ public class enunciado_condicionalParser extends Parser {
 	}
 
 	public static class CondicaoContext extends ParserRuleContext {
+		public Expressao_relacionalContext expressao_relacional;
 		public Literal_booleanoContext literal_booleano() {
 			return getRuleContext(Literal_booleanoContext.class,0);
 		}
@@ -176,27 +178,28 @@ public class enunciado_condicionalParser extends Parser {
 		CondicaoContext _localctx = new CondicaoContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_condicao);
 		try {
-			setState(49);
+			setState(52);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(46);
+				setState(47);
 				literal_booleano();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(47);
-				expressao_relacional();
+				setState(48);
+				((CondicaoContext)_localctx).expressao_relacional = expressao_relacional();
+				System.out.println((((CondicaoContext)_localctx).expressao_relacional!=null?_input.getText(((CondicaoContext)_localctx).expressao_relacional.start,((CondicaoContext)_localctx).expressao_relacional.stop):null));
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(48);
+				setState(51);
 				expressao_logica();
 				}
 				break;
@@ -217,8 +220,11 @@ public class enunciado_condicionalParser extends Parser {
 		public CondicaoContext condicao() {
 			return getRuleContext(CondicaoContext.class,0);
 		}
-		public Instrucao_atribuicaoContext instrucao_atribuicao() {
-			return getRuleContext(Instrucao_atribuicaoContext.class,0);
+		public List<Instrucao_atribuicaoContext> instrucao_atribuicao() {
+			return getRuleContexts(Instrucao_atribuicaoContext.class);
+		}
+		public Instrucao_atribuicaoContext instrucao_atribuicao(int i) {
+			return getRuleContext(Instrucao_atribuicaoContext.class,i);
 		}
 		public List<Instrucao_condicionalContext> instrucao_condicional() {
 			return getRuleContexts(Instrucao_condicionalContext.class);
@@ -247,59 +253,108 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
-			match(T__0);
-			setState(52);
-			match(T__1);
-			setState(53);
-			condicao();
 			setState(54);
-			match(T__2);
+			match(T__0);
 			setState(55);
+			match(T__1);
+			System.out.print("if (");
+			setState(57);
+			condicao();
+			setState(58);
+			match(T__2);
+			System.out.println(") {");
+			setState(60);
 			match(T__3);
-			setState(56);
-			match(T__4);
-			setState(59);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case T__21:
-			case T__22:
-			case T__23:
-			case T__24:
-			case T__25:
-			case T__26:
-			case T__27:
-			case T__28:
-			case T__30:
-				{
-				setState(57);
-				instrucao_atribuicao();
-				}
-				break;
-			case T__0:
-				{
-				setState(58);
-				instrucao_condicional();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
 			setState(61);
+			match(T__4);
+			setState(66);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__30))) != 0)) {
+				{
+				setState(64);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case T__21:
+				case T__22:
+				case T__23:
+				case T__24:
+				case T__25:
+				case T__26:
+				case T__27:
+				case T__28:
+				case T__30:
+					{
+					setState(62);
+					instrucao_atribuicao();
+					}
+					break;
+				case T__0:
+					{
+					setState(63);
+					instrucao_condicional();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(68);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(69);
 			match(T__5);
-			setState(67);
+			System.out.println("} ");
+			setState(83);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__6) {
 				{
-				setState(62);
+				setState(71);
 				match(T__6);
-				setState(63);
+				System.out.println(" else { ");
+				setState(73);
 				match(T__4);
-				setState(64);
-				instrucao_condicional();
-				setState(65);
+				setState(78);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__30))) != 0)) {
+					{
+					setState(76);
+					_errHandler.sync(this);
+					switch (_input.LA(1)) {
+					case T__21:
+					case T__22:
+					case T__23:
+					case T__24:
+					case T__25:
+					case T__26:
+					case T__27:
+					case T__28:
+					case T__30:
+						{
+						setState(74);
+						instrucao_atribuicao();
+						}
+						break;
+					case T__0:
+						{
+						setState(75);
+						instrucao_condicional();
+						}
+						break;
+					default:
+						throw new NoViableAltException(this);
+					}
+					}
+					setState(80);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(81);
 				match(T__5);
+				System.out.println("}");
 				}
 			}
 
@@ -334,20 +389,28 @@ public class enunciado_condicionalParser extends Parser {
 	public final Literal_booleanoContext literal_booleano() throws RecognitionException {
 		Literal_booleanoContext _localctx = new Literal_booleanoContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_literal_booleano);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(69);
-			_la = _input.LA(1);
-			if ( !(_la==T__7 || _la==T__8) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(89);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__7:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(85);
+				match(T__7);
+				System.out.print("true");
+				}
+				break;
+			case T__8:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(87);
+				match(T__8);
+				System.out.print("false");
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -386,27 +449,27 @@ public class enunciado_condicionalParser extends Parser {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_literal);
 		try {
-			setState(75);
+			setState(95);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LITERAL_TEXTO:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(71);
+				setState(91);
 				match(LITERAL_TEXTO);
 				}
 				break;
 			case LITERAL_NUMERICO:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(92);
 				match(LITERAL_NUMERICO);
 				}
 				break;
 			case CARACTERE:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(73);
+				setState(93);
 				match(CARACTERE);
 				}
 				break;
@@ -414,7 +477,7 @@ public class enunciado_condicionalParser extends Parser {
 			case T__8:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(74);
+				setState(94);
 				literal_booleano();
 				}
 				break;
@@ -455,7 +518,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
+			setState(97);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -500,7 +563,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
+			setState(99);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -545,7 +608,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(101);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -589,7 +652,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(83);
+			setState(103);
 			match(T__20);
 			}
 		}
@@ -626,7 +689,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(85);
+			setState(105);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -671,7 +734,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(87);
+			setState(107);
 			_la = _input.LA(1);
 			if ( !(_la==T__25 || _la==T__26) ) {
 			_errHandler.recoverInline(this);
@@ -715,7 +778,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(109);
 			match(T__27);
 			}
 		}
@@ -751,7 +814,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(91);
+			setState(111);
 			match(T__28);
 			}
 		}
@@ -802,7 +865,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93);
+			setState(113);
 			_la = _input.LA(1);
 			if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 			_errHandler.recoverInline(this);
@@ -812,15 +875,15 @@ public class enunciado_condicionalParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(99);
+			setState(119);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) {
 				{
 				{
-				setState(94);
+				setState(114);
 				operador_aritmetico();
-				setState(95);
+				setState(115);
 				_la = _input.LA(1);
 				if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 				_errHandler.recoverInline(this);
@@ -832,7 +895,7 @@ public class enunciado_condicionalParser extends Parser {
 				}
 				}
 				}
-				setState(101);
+				setState(121);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -885,7 +948,7 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(122);
 			_la = _input.LA(1);
 			if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 			_errHandler.recoverInline(this);
@@ -895,15 +958,15 @@ public class enunciado_condicionalParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(108);
+			setState(128);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16))) != 0)) {
 				{
 				{
-				setState(103);
+				setState(123);
 				operador_relacional();
-				setState(104);
+				setState(124);
 				_la = _input.LA(1);
 				if ( !(_la==LITERAL_NUMERICO || _la==IDENTIFICADOR) ) {
 				_errHandler.recoverInline(this);
@@ -915,7 +978,7 @@ public class enunciado_condicionalParser extends Parser {
 				}
 				}
 				}
-				setState(110);
+				setState(130);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -933,6 +996,8 @@ public class enunciado_condicionalParser extends Parser {
 	}
 
 	public static class Expressao_logicaContext extends ParserRuleContext {
+		public Token IDENTIFICADOR;
+		public Operador_logicoContext operador_logico;
 		public List<Literal_booleanoContext> literal_booleano() {
 			return getRuleContexts(Literal_booleanoContext.class);
 		}
@@ -970,75 +1035,78 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(114);
+			setState(134);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__19) {
 				{
 				{
-				setState(111);
+				setState(131);
 				match(T__19);
 				}
 				}
-				setState(116);
+				setState(136);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(119);
+			setState(140);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__7:
 			case T__8:
 				{
-				setState(117);
+				setState(137);
 				literal_booleano();
 				}
 				break;
 			case IDENTIFICADOR:
 				{
-				setState(118);
-				match(IDENTIFICADOR);
+				setState(138);
+				((Expressao_logicaContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
+				System.out.println((((Expressao_logicaContext)_localctx).IDENTIFICADOR!=null?((Expressao_logicaContext)_localctx).IDENTIFICADOR.getText():null));
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(134);
+			setState(157);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19))) != 0)) {
 				{
 				{
-				setState(121);
-				operador_logico();
-				setState(125);
+				setState(142);
+				((Expressao_logicaContext)_localctx).operador_logico = operador_logico();
+				System.out.print((((Expressao_logicaContext)_localctx).operador_logico!=null?_input.getText(((Expressao_logicaContext)_localctx).operador_logico.start,((Expressao_logicaContext)_localctx).operador_logico.stop):null));
+				setState(147);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__19) {
 					{
 					{
-					setState(122);
+					setState(144);
 					match(T__19);
 					}
 					}
-					setState(127);
+					setState(149);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(130);
+				setState(153);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case T__7:
 				case T__8:
 					{
-					setState(128);
+					setState(150);
 					literal_booleano();
 					}
 					break;
 				case IDENTIFICADOR:
 					{
-					setState(129);
-					match(IDENTIFICADOR);
+					setState(151);
+					((Expressao_logicaContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
+					System.out.println((((Expressao_logicaContext)_localctx).IDENTIFICADOR!=null?((Expressao_logicaContext)_localctx).IDENTIFICADOR.getText():null));
 					}
 					break;
 				default:
@@ -1046,7 +1114,7 @@ public class enunciado_condicionalParser extends Parser {
 				}
 				}
 				}
-				setState(136);
+				setState(159);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1097,7 +1165,7 @@ public class enunciado_condicionalParser extends Parser {
 		Instrucao_atribuicaoContext _localctx = new Instrucao_atribuicaoContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_instrucao_atribuicao);
 		try {
-			setState(142);
+			setState(165);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__21:
@@ -1106,7 +1174,7 @@ public class enunciado_condicionalParser extends Parser {
 			case T__24:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(137);
+				setState(160);
 				atribuicao_inteiros();
 				}
 				break;
@@ -1114,28 +1182,28 @@ public class enunciado_condicionalParser extends Parser {
 			case T__26:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(138);
+				setState(161);
 				atribuicao_decimal();
 				}
 				break;
 			case T__27:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(139);
+				setState(162);
 				atribuicao_texto();
 				}
 				break;
 			case T__30:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(140);
+				setState(163);
 				atribuicao_booleana();
 				}
 				break;
 			case T__28:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(141);
+				setState(164);
 				atribuicao_caractere();
 				}
 				break;
@@ -1165,9 +1233,6 @@ public class enunciado_condicionalParser extends Parser {
 		public Expressao_aritmeticaContext expressao_aritmetica() {
 			return getRuleContext(Expressao_aritmeticaContext.class,0);
 		}
-		public Fim_linhaContext fim_linha() {
-			return getRuleContext(Fim_linhaContext.class,0);
-		}
 		public Atribuicao_inteirosContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1188,16 +1253,16 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(144);
+			setState(167);
 			((Atribuicao_inteirosContext)_localctx).tipo_inteiro = tipo_inteiro();
-			setState(145);
+			setState(168);
 			((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
-			setState(146);
+			setState(169);
 			match(T__29);
-			setState(147);
+			setState(170);
 			((Atribuicao_inteirosContext)_localctx).expressao_aritmetica = expressao_aritmetica();
-			setState(148);
-			fim_linha();
+			setState(171);
+			match(T__20);
 
 			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("inteiro")) System.out.println("int " + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
 			    if ((((Atribuicao_inteirosContext)_localctx).tipo_inteiro!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).tipo_inteiro.start,((Atribuicao_inteirosContext)_localctx).tipo_inteiro.stop):null).equals("longo")) System.out.println("long " + (((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_inteirosContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_inteirosContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.start,((Atribuicao_inteirosContext)_localctx).expressao_aritmetica.stop):null) + ";");
@@ -1227,9 +1292,6 @@ public class enunciado_condicionalParser extends Parser {
 		public Expressao_aritmeticaContext expressao_aritmetica() {
 			return getRuleContext(Expressao_aritmeticaContext.class,0);
 		}
-		public Fim_linhaContext fim_linha() {
-			return getRuleContext(Fim_linhaContext.class,0);
-		}
 		public Atribuicao_decimalContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1250,16 +1312,16 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(151);
+			setState(174);
 			((Atribuicao_decimalContext)_localctx).tipo_decimal = tipo_decimal();
-			setState(152);
+			setState(175);
 			((Atribuicao_decimalContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
-			setState(153);
+			setState(176);
 			match(T__29);
-			setState(154);
+			setState(177);
 			((Atribuicao_decimalContext)_localctx).expressao_aritmetica = expressao_aritmetica();
-			setState(155);
-			fim_linha();
+			setState(178);
+			match(T__20);
 
 			    if ((((Atribuicao_decimalContext)_localctx).tipo_decimal!=null?_input.getText(((Atribuicao_decimalContext)_localctx).tipo_decimal.start,((Atribuicao_decimalContext)_localctx).tipo_decimal.stop):null).equals("flutuante")) System.out.println("float " + (((Atribuicao_decimalContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_decimalContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_decimalContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_decimalContext)_localctx).expressao_aritmetica.start,((Atribuicao_decimalContext)_localctx).expressao_aritmetica.stop):null) + ";");
 			    if ((((Atribuicao_decimalContext)_localctx).tipo_decimal!=null?_input.getText(((Atribuicao_decimalContext)_localctx).tipo_decimal.start,((Atribuicao_decimalContext)_localctx).tipo_decimal.stop):null).equals("decimal")) System.out.println("double " + (((Atribuicao_decimalContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_decimalContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_decimalContext)_localctx).expressao_aritmetica!=null?_input.getText(((Atribuicao_decimalContext)_localctx).expressao_aritmetica.start,((Atribuicao_decimalContext)_localctx).expressao_aritmetica.stop):null) + ";");
@@ -1278,17 +1340,13 @@ public class enunciado_condicionalParser extends Parser {
 
 	public static class Atribuicao_booleanaContext extends ParserRuleContext {
 		public Token IDENTIFICADOR;
-		public Expressao_logicaContext expressao_logica;
 		public Expressao_relacionalContext expressao_relacional;
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_condicionalParser.IDENTIFICADOR, 0); }
-		public Expressao_logicaContext expressao_logica() {
-			return getRuleContext(Expressao_logicaContext.class,0);
-		}
-		public Fim_linhaContext fim_linha() {
-			return getRuleContext(Fim_linhaContext.class,0);
-		}
 		public Expressao_relacionalContext expressao_relacional() {
 			return getRuleContext(Expressao_relacionalContext.class,0);
+		}
+		public Expressao_logicaContext expressao_logica() {
+			return getRuleContext(Expressao_logicaContext.class,0);
 		}
 		public Atribuicao_booleanaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1310,36 +1368,36 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(158);
+			setState(181);
 			match(T__30);
-			setState(159);
+			setState(182);
 			((Atribuicao_booleanaContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
-			setState(160);
+			setState(183);
 			match(T__29);
 			System.out.print("boolean " + (((Atribuicao_booleanaContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_booleanaContext)_localctx).IDENTIFICADOR.getText():null) + "=");
-			setState(172);
+			setState(195);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				{
 				{
-				setState(162);
-				((Atribuicao_booleanaContext)_localctx).expressao_logica = expressao_logica();
-				setState(163);
-				fim_linha();
+				setState(185);
+				((Atribuicao_booleanaContext)_localctx).expressao_relacional = expressao_relacional();
+				setState(186);
+				match(T__20);
 				}
-				System.out.println((((Atribuicao_booleanaContext)_localctx).expressao_logica!=null?_input.getText(((Atribuicao_booleanaContext)_localctx).expressao_logica.start,((Atribuicao_booleanaContext)_localctx).expressao_logica.stop):null) + ";");
+				System.out.println((((Atribuicao_booleanaContext)_localctx).expressao_relacional!=null?_input.getText(((Atribuicao_booleanaContext)_localctx).expressao_relacional.start,((Atribuicao_booleanaContext)_localctx).expressao_relacional.stop):null) + ";");
 				}
 				break;
 			case 2:
 				{
 				{
-				setState(167);
-				((Atribuicao_booleanaContext)_localctx).expressao_relacional = expressao_relacional();
-				setState(168);
-				fim_linha();
+				setState(190);
+				expressao_logica();
+				setState(191);
+				match(T__20);
 				}
-				System.out.println((((Atribuicao_booleanaContext)_localctx).expressao_relacional!=null?_input.getText(((Atribuicao_booleanaContext)_localctx).expressao_relacional.start,((Atribuicao_booleanaContext)_localctx).expressao_relacional.stop):null) + ";");
+				System.out.println(";");
 				}
 				break;
 			}
@@ -1364,9 +1422,6 @@ public class enunciado_condicionalParser extends Parser {
 		}
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_condicionalParser.IDENTIFICADOR, 0); }
 		public TerminalNode LITERAL_TEXTO() { return getToken(enunciado_condicionalParser.LITERAL_TEXTO, 0); }
-		public Fim_linhaContext fim_linha() {
-			return getRuleContext(Fim_linhaContext.class,0);
-		}
 		public Atribuicao_textoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1387,16 +1442,16 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(174);
+			setState(197);
 			tipo_texto();
-			setState(175);
+			setState(198);
 			((Atribuicao_textoContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
-			setState(176);
+			setState(199);
 			match(T__29);
-			setState(177);
+			setState(200);
 			((Atribuicao_textoContext)_localctx).LITERAL_TEXTO = match(LITERAL_TEXTO);
-			setState(178);
-			fim_linha();
+			setState(201);
+			match(T__20);
 			System.out.println("String " + (((Atribuicao_textoContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_textoContext)_localctx).IDENTIFICADOR.getText():null)  + "=" + (((Atribuicao_textoContext)_localctx).LITERAL_TEXTO!=null?((Atribuicao_textoContext)_localctx).LITERAL_TEXTO.getText():null) + ";");
 			}
 		}
@@ -1419,9 +1474,6 @@ public class enunciado_condicionalParser extends Parser {
 		}
 		public TerminalNode IDENTIFICADOR() { return getToken(enunciado_condicionalParser.IDENTIFICADOR, 0); }
 		public TerminalNode CARACTERE() { return getToken(enunciado_condicionalParser.CARACTERE, 0); }
-		public Fim_linhaContext fim_linha() {
-			return getRuleContext(Fim_linhaContext.class,0);
-		}
 		public Atribuicao_caractereContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1442,16 +1494,16 @@ public class enunciado_condicionalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(181);
+			setState(204);
 			tipo_caractere();
-			setState(182);
+			setState(205);
 			((Atribuicao_caractereContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
-			setState(183);
+			setState(206);
 			match(T__29);
-			setState(184);
+			setState(207);
 			((Atribuicao_caractereContext)_localctx).CARACTERE = match(CARACTERE);
-			setState(185);
-			fim_linha();
+			setState(208);
+			match(T__20);
 			System.out.println("char " + (((Atribuicao_caractereContext)_localctx).IDENTIFICADOR!=null?((Atribuicao_caractereContext)_localctx).IDENTIFICADOR.getText():null) + "=" + (((Atribuicao_caractereContext)_localctx).CARACTERE!=null?((Atribuicao_caractereContext)_localctx).CARACTERE.getText():null) + ";");
 			}
 		}
@@ -1467,61 +1519,71 @@ public class enunciado_condicionalParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00bf\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00d6\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\3\2\3\3\3\3\3\3"+
-		"\5\3\64\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4>\n\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\5\4F\n\4\3\5\3\5\3\6\3\6\3\6\3\6\5\6N\n\6\3\7\3\7\3\b\3\b\3\t\3"+
-		"\t\3\n\3\n\3\13\3\13\3\f\3\f\3\r\3\r\3\16\3\16\3\17\3\17\3\17\3\17\7\17"+
-		"d\n\17\f\17\16\17g\13\17\3\20\3\20\3\20\3\20\7\20m\n\20\f\20\16\20p\13"+
-		"\20\3\21\7\21s\n\21\f\21\16\21v\13\21\3\21\3\21\5\21z\n\21\3\21\3\21\7"+
-		"\21~\n\21\f\21\16\21\u0081\13\21\3\21\3\21\5\21\u0085\n\21\7\21\u0087"+
-		"\n\21\f\21\16\21\u008a\13\21\3\22\3\22\3\22\3\22\3\22\5\22\u0091\n\22"+
-		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
-		"\5\25\u00af\n\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\2\2\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \""+
-		"$&(*,\2\t\3\2\n\13\3\2\f\17\3\2\20\23\3\2\24\26\3\2\30\33\3\2\34\35\3"+
-		"\2$%\2\u00bb\2.\3\2\2\2\4\63\3\2\2\2\6\65\3\2\2\2\bG\3\2\2\2\nM\3\2\2"+
-		"\2\fO\3\2\2\2\16Q\3\2\2\2\20S\3\2\2\2\22U\3\2\2\2\24W\3\2\2\2\26Y\3\2"+
-		"\2\2\30[\3\2\2\2\32]\3\2\2\2\34_\3\2\2\2\36h\3\2\2\2 t\3\2\2\2\"\u0090"+
-		"\3\2\2\2$\u0092\3\2\2\2&\u0099\3\2\2\2(\u00a0\3\2\2\2*\u00b0\3\2\2\2,"+
-		"\u00b7\3\2\2\2./\5\6\4\2/\3\3\2\2\2\60\64\5\b\5\2\61\64\5\36\20\2\62\64"+
-		"\5 \21\2\63\60\3\2\2\2\63\61\3\2\2\2\63\62\3\2\2\2\64\5\3\2\2\2\65\66"+
-		"\7\3\2\2\66\67\7\4\2\2\678\5\4\3\289\7\5\2\29:\7\6\2\2:=\7\7\2\2;>\5\""+
-		"\22\2<>\5\6\4\2=;\3\2\2\2=<\3\2\2\2>?\3\2\2\2?E\7\b\2\2@A\7\t\2\2AB\7"+
-		"\7\2\2BC\5\6\4\2CD\7\b\2\2DF\3\2\2\2E@\3\2\2\2EF\3\2\2\2F\7\3\2\2\2GH"+
-		"\t\2\2\2H\t\3\2\2\2IN\7#\2\2JN\7$\2\2KN\7\"\2\2LN\5\b\5\2MI\3\2\2\2MJ"+
-		"\3\2\2\2MK\3\2\2\2ML\3\2\2\2N\13\3\2\2\2OP\t\3\2\2P\r\3\2\2\2QR\t\4\2"+
-		"\2R\17\3\2\2\2ST\t\5\2\2T\21\3\2\2\2UV\7\27\2\2V\23\3\2\2\2WX\t\6\2\2"+
-		"X\25\3\2\2\2YZ\t\7\2\2Z\27\3\2\2\2[\\\7\36\2\2\\\31\3\2\2\2]^\7\37\2\2"+
-		"^\33\3\2\2\2_e\t\b\2\2`a\5\f\7\2ab\t\b\2\2bd\3\2\2\2c`\3\2\2\2dg\3\2\2"+
-		"\2ec\3\2\2\2ef\3\2\2\2f\35\3\2\2\2ge\3\2\2\2hn\t\b\2\2ij\5\16\b\2jk\t"+
-		"\b\2\2km\3\2\2\2li\3\2\2\2mp\3\2\2\2nl\3\2\2\2no\3\2\2\2o\37\3\2\2\2p"+
-		"n\3\2\2\2qs\7\26\2\2rq\3\2\2\2sv\3\2\2\2tr\3\2\2\2tu\3\2\2\2uy\3\2\2\2"+
-		"vt\3\2\2\2wz\5\b\5\2xz\7%\2\2yw\3\2\2\2yx\3\2\2\2z\u0088\3\2\2\2{\177"+
-		"\5\20\t\2|~\7\26\2\2}|\3\2\2\2~\u0081\3\2\2\2\177}\3\2\2\2\177\u0080\3"+
-		"\2\2\2\u0080\u0084\3\2\2\2\u0081\177\3\2\2\2\u0082\u0085\5\b\5\2\u0083"+
-		"\u0085\7%\2\2\u0084\u0082\3\2\2\2\u0084\u0083\3\2\2\2\u0085\u0087\3\2"+
-		"\2\2\u0086{\3\2\2\2\u0087\u008a\3\2\2\2\u0088\u0086\3\2\2\2\u0088\u0089"+
-		"\3\2\2\2\u0089!\3\2\2\2\u008a\u0088\3\2\2\2\u008b\u0091\5$\23\2\u008c"+
-		"\u0091\5&\24\2\u008d\u0091\5*\26\2\u008e\u0091\5(\25\2\u008f\u0091\5,"+
-		"\27\2\u0090\u008b\3\2\2\2\u0090\u008c\3\2\2\2\u0090\u008d\3\2\2\2\u0090"+
-		"\u008e\3\2\2\2\u0090\u008f\3\2\2\2\u0091#\3\2\2\2\u0092\u0093\5\24\13"+
-		"\2\u0093\u0094\7%\2\2\u0094\u0095\7 \2\2\u0095\u0096\5\34\17\2\u0096\u0097"+
-		"\5\22\n\2\u0097\u0098\b\23\1\2\u0098%\3\2\2\2\u0099\u009a\5\26\f\2\u009a"+
-		"\u009b\7%\2\2\u009b\u009c\7 \2\2\u009c\u009d\5\34\17\2\u009d\u009e\5\22"+
-		"\n\2\u009e\u009f\b\24\1\2\u009f\'\3\2\2\2\u00a0\u00a1\7!\2\2\u00a1\u00a2"+
-		"\7%\2\2\u00a2\u00a3\7 \2\2\u00a3\u00ae\b\25\1\2\u00a4\u00a5\5 \21\2\u00a5"+
-		"\u00a6\5\22\n\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\b\25\1\2\u00a8\u00af\3"+
-		"\2\2\2\u00a9\u00aa\5\36\20\2\u00aa\u00ab\5\22\n\2\u00ab\u00ac\3\2\2\2"+
-		"\u00ac\u00ad\b\25\1\2\u00ad\u00af\3\2\2\2\u00ae\u00a4\3\2\2\2\u00ae\u00a9"+
-		"\3\2\2\2\u00af)\3\2\2\2\u00b0\u00b1\5\30\r\2\u00b1\u00b2\7%\2\2\u00b2"+
-		"\u00b3\7 \2\2\u00b3\u00b4\7#\2\2\u00b4\u00b5\5\22\n\2\u00b5\u00b6\b\26"+
-		"\1\2\u00b6+\3\2\2\2\u00b7\u00b8\5\32\16\2\u00b8\u00b9\7%\2\2\u00b9\u00ba"+
-		"\7 \2\2\u00ba\u00bb\7\"\2\2\u00bb\u00bc\5\22\n\2\u00bc\u00bd\b\27\1\2"+
-		"\u00bd-\3\2\2\2\17\63=EMenty\177\u0084\u0088\u0090\u00ae";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\3\2\3\2\3\3\3\3"+
+		"\3\3\3\3\3\3\5\3\67\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4C\n"+
+		"\4\f\4\16\4F\13\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4O\n\4\f\4\16\4R\13\4"+
+		"\3\4\3\4\5\4V\n\4\3\5\3\5\3\5\3\5\5\5\\\n\5\3\6\3\6\3\6\3\6\5\6b\n\6\3"+
+		"\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\r\3\r\3\16\3\16\3\17"+
+		"\3\17\3\17\3\17\7\17x\n\17\f\17\16\17{\13\17\3\20\3\20\3\20\3\20\7\20"+
+		"\u0081\n\20\f\20\16\20\u0084\13\20\3\21\7\21\u0087\n\21\f\21\16\21\u008a"+
+		"\13\21\3\21\3\21\3\21\5\21\u008f\n\21\3\21\3\21\3\21\7\21\u0094\n\21\f"+
+		"\21\16\21\u0097\13\21\3\21\3\21\3\21\5\21\u009c\n\21\7\21\u009e\n\21\f"+
+		"\21\16\21\u00a1\13\21\3\22\3\22\3\22\3\22\3\22\5\22\u00a8\n\22\3\23\3"+
+		"\23\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\5\25\u00c6"+
+		"\n\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27\3\27\3\27"+
+		"\3\27\3\27\2\2\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2\b\3"+
+		"\2\f\17\3\2\20\23\3\2\24\26\3\2\30\33\3\2\34\35\3\2$%\2\u00d6\2.\3\2\2"+
+		"\2\4\66\3\2\2\2\68\3\2\2\2\b[\3\2\2\2\na\3\2\2\2\fc\3\2\2\2\16e\3\2\2"+
+		"\2\20g\3\2\2\2\22i\3\2\2\2\24k\3\2\2\2\26m\3\2\2\2\30o\3\2\2\2\32q\3\2"+
+		"\2\2\34s\3\2\2\2\36|\3\2\2\2 \u0088\3\2\2\2\"\u00a7\3\2\2\2$\u00a9\3\2"+
+		"\2\2&\u00b0\3\2\2\2(\u00b7\3\2\2\2*\u00c7\3\2\2\2,\u00ce\3\2\2\2./\b\2"+
+		"\1\2/\60\5\6\4\2\60\3\3\2\2\2\61\67\5\b\5\2\62\63\5\36\20\2\63\64\b\3"+
+		"\1\2\64\67\3\2\2\2\65\67\5 \21\2\66\61\3\2\2\2\66\62\3\2\2\2\66\65\3\2"+
+		"\2\2\67\5\3\2\2\289\7\3\2\29:\7\4\2\2:;\b\4\1\2;<\5\4\3\2<=\7\5\2\2=>"+
+		"\b\4\1\2>?\7\6\2\2?D\7\7\2\2@C\5\"\22\2AC\5\6\4\2B@\3\2\2\2BA\3\2\2\2"+
+		"CF\3\2\2\2DB\3\2\2\2DE\3\2\2\2EG\3\2\2\2FD\3\2\2\2GH\7\b\2\2HU\b\4\1\2"+
+		"IJ\7\t\2\2JK\b\4\1\2KP\7\7\2\2LO\5\"\22\2MO\5\6\4\2NL\3\2\2\2NM\3\2\2"+
+		"\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QS\3\2\2\2RP\3\2\2\2ST\7\b\2\2TV\b\4\1"+
+		"\2UI\3\2\2\2UV\3\2\2\2V\7\3\2\2\2WX\7\n\2\2X\\\b\5\1\2YZ\7\13\2\2Z\\\b"+
+		"\5\1\2[W\3\2\2\2[Y\3\2\2\2\\\t\3\2\2\2]b\7#\2\2^b\7$\2\2_b\7\"\2\2`b\5"+
+		"\b\5\2a]\3\2\2\2a^\3\2\2\2a_\3\2\2\2a`\3\2\2\2b\13\3\2\2\2cd\t\2\2\2d"+
+		"\r\3\2\2\2ef\t\3\2\2f\17\3\2\2\2gh\t\4\2\2h\21\3\2\2\2ij\7\27\2\2j\23"+
+		"\3\2\2\2kl\t\5\2\2l\25\3\2\2\2mn\t\6\2\2n\27\3\2\2\2op\7\36\2\2p\31\3"+
+		"\2\2\2qr\7\37\2\2r\33\3\2\2\2sy\t\7\2\2tu\5\f\7\2uv\t\7\2\2vx\3\2\2\2"+
+		"wt\3\2\2\2x{\3\2\2\2yw\3\2\2\2yz\3\2\2\2z\35\3\2\2\2{y\3\2\2\2|\u0082"+
+		"\t\7\2\2}~\5\16\b\2~\177\t\7\2\2\177\u0081\3\2\2\2\u0080}\3\2\2\2\u0081"+
+		"\u0084\3\2\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\37\3\2\2"+
+		"\2\u0084\u0082\3\2\2\2\u0085\u0087\7\26\2\2\u0086\u0085\3\2\2\2\u0087"+
+		"\u008a\3\2\2\2\u0088\u0086\3\2\2\2\u0088\u0089\3\2\2\2\u0089\u008e\3\2"+
+		"\2\2\u008a\u0088\3\2\2\2\u008b\u008f\5\b\5\2\u008c\u008d\7%\2\2\u008d"+
+		"\u008f\b\21\1\2\u008e\u008b\3\2\2\2\u008e\u008c\3\2\2\2\u008f\u009f\3"+
+		"\2\2\2\u0090\u0091\5\20\t\2\u0091\u0095\b\21\1\2\u0092\u0094\7\26\2\2"+
+		"\u0093\u0092\3\2\2\2\u0094\u0097\3\2\2\2\u0095\u0093\3\2\2\2\u0095\u0096"+
+		"\3\2\2\2\u0096\u009b\3\2\2\2\u0097\u0095\3\2\2\2\u0098\u009c\5\b\5\2\u0099"+
+		"\u009a\7%\2\2\u009a\u009c\b\21\1\2\u009b\u0098\3\2\2\2\u009b\u0099\3\2"+
+		"\2\2\u009c\u009e\3\2\2\2\u009d\u0090\3\2\2\2\u009e\u00a1\3\2\2\2\u009f"+
+		"\u009d\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0!\3\2\2\2\u00a1\u009f\3\2\2\2"+
+		"\u00a2\u00a8\5$\23\2\u00a3\u00a8\5&\24\2\u00a4\u00a8\5*\26\2\u00a5\u00a8"+
+		"\5(\25\2\u00a6\u00a8\5,\27\2\u00a7\u00a2\3\2\2\2\u00a7\u00a3\3\2\2\2\u00a7"+
+		"\u00a4\3\2\2\2\u00a7\u00a5\3\2\2\2\u00a7\u00a6\3\2\2\2\u00a8#\3\2\2\2"+
+		"\u00a9\u00aa\5\24\13\2\u00aa\u00ab\7%\2\2\u00ab\u00ac\7 \2\2\u00ac\u00ad"+
+		"\5\34\17\2\u00ad\u00ae\7\27\2\2\u00ae\u00af\b\23\1\2\u00af%\3\2\2\2\u00b0"+
+		"\u00b1\5\26\f\2\u00b1\u00b2\7%\2\2\u00b2\u00b3\7 \2\2\u00b3\u00b4\5\34"+
+		"\17\2\u00b4\u00b5\7\27\2\2\u00b5\u00b6\b\24\1\2\u00b6\'\3\2\2\2\u00b7"+
+		"\u00b8\7!\2\2\u00b8\u00b9\7%\2\2\u00b9\u00ba\7 \2\2\u00ba\u00c5\b\25\1"+
+		"\2\u00bb\u00bc\5\36\20\2\u00bc\u00bd\7\27\2\2\u00bd\u00be\3\2\2\2\u00be"+
+		"\u00bf\b\25\1\2\u00bf\u00c6\3\2\2\2\u00c0\u00c1\5 \21\2\u00c1\u00c2\7"+
+		"\27\2\2\u00c2\u00c3\3\2\2\2\u00c3\u00c4\b\25\1\2\u00c4\u00c6\3\2\2\2\u00c5"+
+		"\u00bb\3\2\2\2\u00c5\u00c0\3\2\2\2\u00c6)\3\2\2\2\u00c7\u00c8\5\30\r\2"+
+		"\u00c8\u00c9\7%\2\2\u00c9\u00ca\7 \2\2\u00ca\u00cb\7#\2\2\u00cb\u00cc"+
+		"\7\27\2\2\u00cc\u00cd\b\26\1\2\u00cd+\3\2\2\2\u00ce\u00cf\5\32\16\2\u00cf"+
+		"\u00d0\7%\2\2\u00d0\u00d1\7 \2\2\u00d1\u00d2\7\"\2\2\u00d2\u00d3\7\27"+
+		"\2\2\u00d3\u00d4\b\27\1\2\u00d4-\3\2\2\2\23\66BDNPU[ay\u0082\u0088\u008e"+
+		"\u0095\u009b\u009f\u00a7\u00c5";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

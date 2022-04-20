@@ -9,7 +9,7 @@ init: instrucao_atribuicao;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Um caractere é composto por 1 único digito numérico ou caractere ASCII entre aspas simples
-CARACTERE: [a-zA-Z0-9];
+CARACTERE: 'c'[a-zA-Z0-9]'c';
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19,12 +19,12 @@ LITERAL_TEXTO: '"' [a-zA-Z0-9]+ '"';
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //um literal numérico corresponde a um literal composto somente por números e sem aspas, também pode ter ponto caso senha decimal
-LITERAL_NUMERICO: [0-9]+ | [0-9]? . [0-9]+;
+LITERAL_NUMERICO: ([0-9]+) | (([0-9]*)?'.'[0-9]+);
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //literal booleano é a palavra verdadeiro ou a palavra falso
-literal_booleano: 'verdadeiro' | 'falso';
+literal_booleano: 'verdadeiro' {System.out.print("true");}| 'falso' {System.out.print("false");};
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -39,8 +39,8 @@ operador_aritmetico: '+' | '-' | '/' | '*';
 //Operadores relacionais maior que, menor que, menor ou igual, maior ou igual
 operador_relacional: '>' | '<' | '<=' | '>=';
 
-//Operadores logicos AND, OR, XOR e NOT
-operador_logico: '&&' | '||' | '!';
+//Operadores logicos AND, OR e NOT
+operador_logico: '&&'  | '||' | '!' ;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ expressao_aritmetica: (LITERAL_NUMERICO|IDENTIFICADOR) (operador_aritmetico (LIT
 expressao_relacional: (LITERAL_NUMERICO|IDENTIFICADOR) (operador_relacional (LITERAL_NUMERICO|IDENTIFICADOR))*;
 
 //Abaixo a expressão lógica
-expressao_logica: '!'*(literal_booleano|IDENTIFICADOR) (operador_logico '!'*(literal_booleano|IDENTIFICADOR))*;
+expressao_logica: '!'*(literal_booleano|IDENTIFICADOR {System.out.println($IDENTIFICADOR.text);}) (operador_logico {System.out.print($operador_logico.text);} '!'*(literal_booleano|IDENTIFICADOR {System.out.println($IDENTIFICADOR.text);}))*;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,21 +87,21 @@ instrucao_atribuicao: atribuicao_inteiros | atribuicao_decimal | atribuicao_text
 
 //Todos os tipos de atribuições abaixo
 //tem como ir atras das variaveis de outras regras
-atribuicao_inteiros: tipo_inteiro IDENTIFICADOR ':=' expressao_aritmetica fim_linha {
+atribuicao_inteiros: tipo_inteiro IDENTIFICADOR ':=' expressao_aritmetica '.' {
     if ($tipo_inteiro.text.equals("inteiro")) System.out.println("int " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("longo")) System.out.println("long " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("curto")) System.out.println("short " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("byte")) System.out.println("byte " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");};
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica fim_linha {
+atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica '.' {
     if ($tipo_decimal.text.equals("flutuante")) System.out.println("float " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_decimal.text.equals("decimal")) System.out.println("double " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");};
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' {System.out.print("boolean " + $IDENTIFICADOR.text + "=");}((expressao_logica fim_linha) {System.out.println($expressao_logica.text + ";");} | (expressao_relacional fim_linha) {System.out.println($expressao_relacional.text + ";");});
+atribuicao_booleana: 'booleano' IDENTIFICADOR ':='{System.out.print("boolean " + $IDENTIFICADOR.text + "=");}/*|*/((expressao_relacional '.'){System.out.println($expressao_relacional.text + ";");} | (expressao_logica '.'){System.out.println(";");});
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO fim_linha {System.out.println("String " + $IDENTIFICADOR.text  + "=" + $LITERAL_TEXTO.text + ";");};
+atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO '.' {System.out.println("String " + $IDENTIFICADOR.text  + "=" + $LITERAL_TEXTO.text + ";");};
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE fim_linha {System.out.println("char " + $IDENTIFICADOR.text + "=" + $CARACTERE.text + ";");};
+atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE '.' {System.out.println("char " + $IDENTIFICADOR.text + "=" + $CARACTERE.text + ";");};
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
