@@ -94,7 +94,8 @@ atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' expressao_logica | expressao_
 atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO fim_linha;
 atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE fim_linha;
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //comando para ignorar espaços, tabulações e carriage return
 Ws: [ \t\r\n]+ -> skip;
+
