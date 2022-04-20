@@ -73,7 +73,7 @@ tipo_caractere: 'caractere';
 expressao_aritmetica: (LITERAL_NUMERICO|IDENTIFICADOR) (operador_aritmetico (LITERAL_NUMERICO|IDENTIFICADOR))*;
 
 //Abaixo a expressão relacional
-expressao_relacional: (LITERAL_NUMERICO|IDENTIFICADOR) operador_relacional (LITERAL_NUMERICO|IDENTIFICADOR);
+expressao_relacional: (LITERAL_NUMERICO|IDENTIFICADOR) (operador_relacional (LITERAL_NUMERICO|IDENTIFICADOR))*;
 
 //Abaixo a expressão lógica
 expressao_logica: '!'*(literal_booleano|IDENTIFICADOR) (operador_logico '!'*(literal_booleano|IDENTIFICADOR))*;
@@ -83,19 +83,28 @@ expressao_logica: '!'*(literal_booleano|IDENTIFICADOR) (operador_logico '!'*(lit
 //A sintaxe da instrução(enunciado) de atribuição em java é composta por tipo, identificador da variavel sendo criada e uma expressão que, quando avaliada retorne um valor do tipo especificado
 instrucao_atribuicao: atribuicao_inteiros | atribuicao_decimal | atribuicao_texto | atribuicao_booleana | atribuicao_caractere;
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //Todos os tipos de atribuições abaixo
+//tem como ir atras das variaveis de outras regras
 atribuicao_inteiros: tipo_inteiro IDENTIFICADOR ':=' expressao_aritmetica fim_linha {
     if ($tipo_inteiro.text.equals("inteiro")) System.out.println("int " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("longo")) System.out.println("long " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("curto")) System.out.println("short " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
     if ($tipo_inteiro.text.equals("byte")) System.out.println("byte " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");};
-atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica fim_linha;
-atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' expressao_logica | expressao_relacional fim_linha;
-atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO fim_linha;
-atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE fim_linha;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+atribuicao_decimal: tipo_decimal IDENTIFICADOR ':=' expressao_aritmetica fim_linha {
+    if ($tipo_decimal.text.equals("flutuante")) System.out.println("float " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");
+    if ($tipo_decimal.text.equals("decimal")) System.out.println("double " + $IDENTIFICADOR.text + "=" + $expressao_aritmetica.text + ";");};
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+atribuicao_booleana: 'booleano' IDENTIFICADOR ':=' {System.out.print("boolean " + $IDENTIFICADOR.text + "=");}((expressao_logica fim_linha) {System.out.println($expressao_logica.text + ";");} | (expressao_relacional fim_linha) {System.out.println($expressao_relacional.text + ";");});
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+atribuicao_texto: tipo_texto IDENTIFICADOR ':=' LITERAL_TEXTO fim_linha {System.out.println("String " + $IDENTIFICADOR.text  + "=" + $LITERAL_TEXTO.text + ";");};
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+atribuicao_caractere: tipo_caractere IDENTIFICADOR ':=' CARACTERE fim_linha {System.out.println("char " + $IDENTIFICADOR.text + "=" + $CARACTERE.text + ";");};
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//comando para ignorar espaços, tabulações e carriage return
+//regra para ignorar espaços, tabulações e carriage return
 Ws: [ \t\r\n]+ -> skip;
 
