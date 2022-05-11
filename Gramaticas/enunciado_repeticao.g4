@@ -6,9 +6,18 @@ import enunciado_condicional;
 //Raiz da nossa gramática de repetição
 init: instrucao_repeticao;
 
-//Regra contendo as sintaxes das instruções de repetição da linguagem
-instrucao_repeticao: repeticao_para;
+//------------------------------------------------------------------------------------------------------------------------------------------
 
-/*Instrução da repetição "para" da linguagem, as expressões são respectivamente de declaração e atribuição, condição da repetição e incremento ou decremento(mas também pode ser qualquer expressão de atribuição a uma variável)*/
+//Regra contendo as sintaxes das instruções de repetição da linguagem
+instrucao_repeticao: repeticao_para | repeticao_enquanto;
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+/*Instrução da repetição "para" da linguagem, as expressões são respectivamente de declaração e atribuição, condição da repetição e
+incremento ou decremento(mas também pode ser qualquer expressão de atribuição a uma variável)*/
+
 repeticao_para: 'para' '('instrucao_atribuicao ',' condicao ',' ('soma' IDENTIFICADOR | 'subtrai' IDENTIFICADOR)')' 'siga' '{'(repeticao_para | instrucao_condicional | instrucao_atribuicao)* '}';
 
+//------------------------------------------------------------------------------------------------------------------------------------------
+
+repeticao_enquanto: 'enquanto' '(' condicao ')' 'siga' '{' (repeticao_para | instrucao_condicional | instrucao_atribuicao | repeticao_enquanto)* '}';
