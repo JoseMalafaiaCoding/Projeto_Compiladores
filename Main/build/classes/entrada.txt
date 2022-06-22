@@ -1,0 +1,6 @@
+classe Teste
+
+	texto var := "oi" <> "mae".
+	
+
+fim classe
